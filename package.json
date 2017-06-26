@@ -1,22 +1,29 @@
 {
-	"name": "tree",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"react": "16.0.0-alpha.12",
-		"react-native": "0.45.1"
-	},
-	"devDependencies": {
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "2.0.0",
-		"jest": "20.0.4",
-		"react-test-renderer": "16.0.0-alpha.12"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "tree",
+  "version": "1.0.0",
+  "description": "react native tree component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamRobertHall/react-native-tree.git"
+  },
+  "keywords": [
+    "Tree",
+    "TreeSelect",
+    "TreeView"
+  ],
+  "author": "AdamRobertHall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdamRobertHall/react-native-tree/issues"
+  },
+  "homepage": "https://github.com/AdamRobertHall/react-native-tree#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-native": "^0.45.1",
+    "react-native-vector-icons": "^4.2.0"
+  }
 }
