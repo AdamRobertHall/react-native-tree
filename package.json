@@ -6,8 +6,6 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react": "^16.0.0-alpha.12",
-    "react-native": "^0.45.1",
     "react-native-vector-icons": "^4.2.0"
   },
   "description": "[![NPM](https://nodei.co/npm/react-native-router-flux.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-native-router-flux/)  \r Router for React Native based on new React Native Navigation API.",
