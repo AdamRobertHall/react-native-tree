@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { Router, Scene, TabBar, Actions } from 'react-native-router-flux';
 import {
-  AppRegistry, Text, View, ScrollView, TouchableHighlight, TouchableOpacity
+  AppRegistry, Text, View, ScrollView, TouchableHighlight, TouchableOpacity, Dimensions
 } from 'react-native';
 const SideMenu = require('react-native-side-menu');
 import Icon from 'react-native-vector-icons/FontAwesome';

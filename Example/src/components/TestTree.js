@@ -1,3 +1,4 @@
+import {Tree} from 'react-native-tree';
 export default class TestTree extends Component {
     constructor() {
         super();
@@ -10,7 +11,7 @@ export default class TestTree extends Component {
     render() {
         let menu = <View style={{backgroundColor: '#F5F5F9'}}>
             <ScrollView style={styles.tree}>
-                <TreeView
+                <Tree
                     showLine
                     defaultExpandRoot
                     defaultSelectedKeys = {this.state.selectedKeys}
