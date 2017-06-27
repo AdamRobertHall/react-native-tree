@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import {ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Tree extends React.Component {
@@ -44,7 +44,7 @@ class Tree extends React.Component {
         // 默认展开所有节点
         if (defaultExpandAll) {
             tempExpandedKeys = [];
-            _traverseTree(treeData, (node) => {
+            this.traverseTree(treeData, (node) => {
                 tempExpandedKeys.push(node.key);
                 expanded[node.key] = true;
             });
@@ -64,6 +64,24 @@ class Tree extends React.Component {
             selected: selected,
             expandedKeys: defaultExpandedKeys || tempExpandedKeys,
             selectedKeys: defaultSelectedKeys || [],
+        })
+    }
+    /**
+     * @param  {Array} treeData
+     * @param  {function (treeNode)} operation
+     */
+    traverseTree(treeData, operation) {
+        if (!(treeData instanceof Array)) {
+            console.error("treeData必须为数组");
+            return;
+        }
+        if (!(operation instanceof Function)) {
+            console.error("operation必须为函数");
+            return;
+        }
+        treeData.map(node => {
+            operation(node);
+            node && node.children && node.children.length > 0 && this.traverseTree(node.children, operation);
         })
     }
     /**
@@ -408,12 +426,18 @@ class Tree extends React.Component {
     }
 
     render() {
-        return this.renderTree(this.props.treeData || [], null);
+        return <ScrollView style={this.props.style || styles.tree}>
+            {this.renderTree(this.props.treeData || [], null)}
+        </ScrollView>
     }
 }
 const iconWidth = 20;
 const lineMarginLeft = 4;
 const styles = {
+    tree: {
+        padding: 10,
+        height: ScreenHeight - 90,
+    },
     node: {
         paddingTop: 10
     },

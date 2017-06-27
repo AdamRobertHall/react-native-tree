@@ -1,6 +1,14 @@
 import TestTree from './components/TestTree'
 import TestTreeSelect from './components/TestTreeSelect'
-class ExampleRouter extends Component {
+
+class TabIcon extends React.Component {
+    render(){
+        return (
+            <Text style={{color: this.props.selected ? 'black' :'white'}}>{this.props.title}</Text>
+        );
+    }
+}
+export default class ExampleRouter extends Component {
     constructor() {
         super();
     }
@@ -17,20 +25,20 @@ class ExampleRouter extends Component {
                 >
                     <Scene
                         key="tree"
-                        hideNavBar
+                        title="Tree"
                         component={TestTree}
+                        icon={TabIcon}
+                        iconName="Tree"
                     />
                     <Scene
                         key="tree_select"
-                        hideNavBar
-                        component={testTreeSelect}
+                        title="TreeSelect"
+                        icon={TabIcon}
+                        iconName="TreeSelect"
+                        component={TestTreeSelect}
                     />
-                </Scene>
-
-                
+                </Scene> 
             </Router>
         )
     }
 }
-
-export default ExampleRouter;

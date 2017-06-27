@@ -1,8 +1,8 @@
-import React, { PropTypes, Component } from 'react';
-import { Router, Scene, TabBar, Actions } from 'react-native-router-flux';
+import React, { PropTypes, Component } from 'react'
+import { Router, Scene, TabBar, Actions } from 'react-native-router-flux'
 import {
   AppRegistry, Text, View, ScrollView, TouchableHighlight, TouchableOpacity
-} from 'react-native';
+} from 'react-native'
 
 const SideMenu = require('react-native-side-menu');
 import Icon from 'react-native-vector-icons/FontAwesome';
