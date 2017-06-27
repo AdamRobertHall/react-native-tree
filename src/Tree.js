@@ -206,6 +206,7 @@ class Tree extends React.Component {
             selectedKeys = [node.key];
             selected = {};
             selected[node.key] = true;
+            selectedNodes = [node];
         }
         /**
          * 1. 如果定义checkable则建立父子节点关联关系
@@ -263,7 +264,7 @@ class Tree extends React.Component {
             expandedKeys.push(key);
         }
 
-        if (selected[key] === true) {
+        if (selected[key] === true && checkable && !checkStrictly) {
             children && children.map(item => {
                 if (isExpanded) {
                     selected[item.key] = false;
@@ -339,7 +340,7 @@ class Tree extends React.Component {
             textStyle.color = '#D0D0D0';
         }
         
-        textStyle.marginLeft = 5;
+        textStyle.marginLeft = 2;
         if (selected[key]) {
             textStyle.backgroundColor = '#D2EAFB'
         }
@@ -426,7 +427,7 @@ class Tree extends React.Component {
     }
 
     render() {
-        return <ScrollView style={this.props.style || styles.tree}>
+        return <ScrollView style={this.props.treeStyle || styles.tree}>
             {this.renderTree(this.props.treeData || [], null)}
         </ScrollView>
     }
