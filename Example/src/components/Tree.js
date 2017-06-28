@@ -81,7 +81,7 @@ class Tree extends React.Component {
             node.parentNode = parent;
             if (selectedKeys.indexOf(node.key) !== -1) {
                 selectedNodes.push(node);
-                this.parentSelect(parent, selected, selectedKeys, selectedNodes);
+                this.parentSelect(parent, selected, [], []);
             }
         }, null);
 
@@ -111,7 +111,7 @@ class Tree extends React.Component {
                 node.parentNode = parent;
                 if (selectedKeys.indexOf(node.key) !== -1) {
                     selectedNodes.push(node);
-                    this.parentSelect(parent, selected, selectedKeys, selectedNodes);
+                    this.parentSelect(parent, selected, [], []);
                 }
             }, null);
 

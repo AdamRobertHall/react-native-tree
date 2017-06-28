@@ -10,7 +10,7 @@
     "react-native": "^0.41.2",
     "react-native-router-flux": "^3.38.1",
     "react-native-side-menu": "^0.20.3",
-    "react-native-tree": "file:///E:\\Adam\\react-native-tree",
+    "react-native-tree": "file:..",
     "react-native-vector-icons": "^4.2.0"
   },
   "devDependencies": {
