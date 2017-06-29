@@ -33,5 +33,5 @@ subtitle: 树形控件
 
 ## 使用
 ```jsx
-<Tree treeData={[]}/>
+<TreeSelect treeData={[]}/>
 ```
