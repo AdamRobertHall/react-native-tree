@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import {ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import {ScrollView, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MyUtils from './MyUtils'
 
+const ScreenHeight = Dimensions.get('window').height;
 class Tree extends React.Component {
     constructor(props) {
         super(props);

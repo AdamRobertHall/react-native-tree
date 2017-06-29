@@ -1,26 +1,29 @@
 {
   "name": "react-native-tree",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
     "rc-dialog": "^6.5.10",
-    "react": "^15.4.0",
-    "react-native": "^0.41.2",
-    "react-native-vector-icons": "^4.2.0",
-    "rmc-picker": "^3.10.7"
+    "react-native-vector-icons": "^4.2.0"
   },
-  "description": "[![NPM](https://nodei.co/npm/react-native-router-flux.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/react-native-router-flux/)  \r Router for React Native based on new React Native Navigation API.",
+  "description": "modify Dimensions  bug",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/react": "~0.14.41",
+    "@types/react-native": "~0.29.36",
+    "react": "^15.5.0",
+    "react-native": "^0.41.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AdamRobertHall/react-native-tree.git"
   },
   "keywords": [
     "react-native-tree",
-    "tree"
+    "tree",
+    "tree-select"
   ],
   "author": "AdamRobertHall",
   "license": "ISC",
