@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MyUtils from './MyUtils'
 
 class Tree extends React.Component {
     constructor(props) {
@@ -14,39 +15,9 @@ class Tree extends React.Component {
         }
     }
 
-    /**
-     * 数组转key:true 格式对象
-     * @param {*} array 
-     * @param {*} obj 
-     */
-    arrayToObj(array) {
-        let obj = {};
-        if (array && array.length > 0) {
-            array.map(item => obj[item] = true);
-        }
-        return obj;
-    }
-
-    /**
-     * @param  {Array} treeData
-     * @param  {function (treeNode)} operation
-     */
-    traverseTree(treeData, operation, parent) {
-        if (!(treeData instanceof Array)) {
-            console.error("treeData必须为数组");
-            return;
-        }
-        if (!(operation instanceof Function)) {
-            console.error("operation必须为函数");
-            return;
-        }
-        treeData.map(node => {
-            operation(node, parent);
-            node && node.children && node.children.length > 0 && this.traverseTree(node.children, operation, node);
-        })
-    }
     componentWillMount() {
-        let {expandedKeys, selectedKeys, defaultSelectedKeys, defaultExpandedKeys, defaultExpandAll, defaultExpandRoot, treeData} = this.props;
+        let {checkable, checkStrictly, expandedKeys, selectedKeys, defaultSelectedKeys, defaultExpandedKeys,
+             defaultExpandAll, defaultExpandRoot, treeData} = this.props;
         let tempExpandedKeys = [];
         let expanded = {};
         let selected = {};
@@ -62,7 +33,7 @@ class Tree extends React.Component {
         // 默认展开所有节点
         if (defaultExpandAll) {
             tempExpandedKeys = [];
-            this.traverseTree(treeData, (node) => {
+            MyUtils.traverseTree(treeData, (node) => {
                 tempExpandedKeys.push(node.key);
                 expanded[node.key] = true;
             });
@@ -70,18 +41,20 @@ class Tree extends React.Component {
 
         // 受控或默认展开和选择的节点
         if (expandedKeys || defaultExpandedKeys) {
-            expanded = this.arrayToObj(expandedKeys || defaultExpandedKeys);
+            expanded = MyUtils.arrayToObj(expandedKeys || defaultExpandedKeys);
         }
 
         if (selectedKeys || defaultSelectedKeys) {
-            selected = this.arrayToObj(selectedKeys || defaultSelectedKeys);
+            selected = MyUtils.arrayToObj(selectedKeys || defaultSelectedKeys);
         }
         let selectedNodes = [];
-        this.traverseTree(treeData, (node, parent) => {
+        MyUtils.traverseTree(treeData, (node, parent) => {
             node.parentNode = parent;
             if (selectedKeys.indexOf(node.key) !== -1) {
                 selectedNodes.push(node);
-                this.parentSelect(parent, selected, selectedKeys, selectedNodes);
+                if (checkable && !checkStrictly) {
+                    MyUtils.parentSelect(parent, selected, [], []);
+                }
             }
         }, null);
 
@@ -100,18 +73,20 @@ class Tree extends React.Component {
      * @param {{expandedKeys, selectedKeys}} nextProps 
      */
     componentWillReceiveProps(nextProps) {
-        let {treeData, expandedKeys, selectedKeys} = nextProps;
+        let {checkable, checkStrictly, treeData, expandedKeys, selectedKeys} = nextProps;
         let selected = {};
         let expanded = {};
         
         if (this.props.selectedKeys !== selectedKeys) {
-            selected = this.arrayToObj(selectedKeys);
+            selected = MyUtils.arrayToObj(selectedKeys);
             let selectedNodes = [];
-            this.traverseTree(treeData, (node, parent) => {
+            MyUtils.traverseTree(treeData, (node, parent) => {
                 node.parentNode = parent;
                 if (selectedKeys.indexOf(node.key) !== -1) {
                     selectedNodes.push(node);
-                    this.parentSelect(parent, selected, selectedKeys, selectedNodes);
+                    if (checkable && !checkStrictly) {
+                        MyUtils.parentSelect(parent, selected, [], []);
+                    }
                 }
             }, null);
 
@@ -122,44 +97,12 @@ class Tree extends React.Component {
             })
         }
         if (this.props.expandedKey !== expandedKeys) {
-            expanded = this.arrayToObj(expandedKeys);    
+            expanded = MyUtils.arrayToObj(expandedKeys);    
             this.setState({
                 expanded: expanded,
                 expandedKeys: expandedKeys,
             })
         }
-    }
-
-    // 建立子父关系
-    parentSelect(parentNode, selected, selectedKeys, selectedNodes) {
-        if (parentNode) {
-            let siblingNum = 0;
-            let siblingAllSelectedNum = 0;
-            parentNode.children.map(item => {
-                if (selected[item.key] === true) { 
-                    siblingNum++;
-                    siblingAllSelectedNum++;
-                }
-                if (selected[item.key] === null) { 
-                    siblingNum++;
-                }   
-            });
-
-            if (siblingNum === 0) {
-                selected[parentNode.key] = false;
-                selectedKeys = selectedKeys.filter(key => key !== parentNode.key);
-                selectedNodes = selectedNodes.filter(item => item.key !== parentNode.key);
-            } else if (siblingAllSelectedNum === parentNode.children.length) {
-                selected[parentNode.key] = true;
-                selectedKeys.push(parentNode.key);
-                selectedNodes.push(parentNode);
-            } else {
-                selected[parentNode.key] = null;
-                selectedKeys = selectedKeys.filter(key => key !== parentNode.key);
-                selectedNodes = selectedNodes.filter(item => item.key !== parentNode.key);
-            }
-            this.parentSelect(parentNode.parentNode, selected, selectedKeys, selectedNodes);
-        } 
     }
     
     /**
@@ -261,7 +204,7 @@ class Tree extends React.Component {
                 selectNode(node, !isSelected);
 
                 // 然后回溯到根节点
-                this.parentSelect(node.parentNode, selected, selectedKeys, selectedNodes);
+                MyUtils.parentSelect(node.parentNode, selected, selectedKeys, selectedNodes);
                 // 最后处理当前节点
                 if (!isSelected) {
                     selectedKeys.push(node.key);
@@ -487,7 +430,6 @@ const styles = {
     },
     children: {
         paddingLeft: iconWidth,
-        
     },
     icon: {
         width: iconWidth,

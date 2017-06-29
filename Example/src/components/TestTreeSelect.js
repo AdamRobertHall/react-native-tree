@@ -1,42 +1,90 @@
-//import {TreeSelect} from 'react-native-tree';
-import TreeSelect from './TreeSelect'
+import {TreeSelect} from 'react-native-tree';
 const {treeData} = require('./treeData');
 export default class TestTreeSelect extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            value1: [],
+            value2: [],
+            value3: [],
+        }
+    }
     render () {
         return <View style={{flex:1, marginTop: 80}}>
             <View style={styles.container}>
                 <View style={{height: 80}}>
-                    <Text style={{fontSize: 16}}>将Tree选择的节点显示出来，支持多选</Text>
+                    <Text style={{fontSize: 16}}>将Tree选择的节点显示出来，支持多选, 支持级联</Text>
                 </View>
-                <View style={styles.other}>
-                    <View style={styles.wapperTree}>
-                        <View style={styles.treeSelect}>
-                            <TreeSelect 
-                                styles={defautStyles} 
-                                treeData={treeData} 
-                                checkable 
-                                multiple
-                                renderValueText={(nodes) => {
-                                    let str = "";
-                                    for (let i in nodes) {
-                                        let node = nodes[i];
-                                        if (i < nodes.length - 1) {
-                                            str += node.label + "/";
-                                        } else {
-                                            str += node.label;
-                                        }
-                                    }
-                                    return <Text style={{color: '#0ae'}}>{str}</Text>
-                                }}
-                            />
-                        </View>
-                        <View style={styles.text}>
-                            <Text style={{fontSize: 20, color: 'red'}}>点向右箭头</Text>
-                        </View>
+                <View style={styles.wapperTree}>
+                    <View style={styles.treeSelect}>
+                        <TreeSelect 
+                            styles={defautStyles} 
+                            treeData={treeData} 
+                            value={this.state.value}
+                            title='单选'
+                            onChange={value => this.setState({value: value})}
+                        />
+                    </View>
+                    <View style={styles.text}>
+                        <Text style={{fontSize: 20, color: '#0ae'}}>单选</Text>
                     </View>
                 </View>
-                <View style={styles.other}>
-                    <Text style={{fontSize: 16}}>其他组件</Text>
+                <View style={styles.wapperTree}>
+                    <View style={styles.treeSelect}>
+                        <TreeSelect 
+                            styles={defautStyles} 
+                            treeData={treeData} 
+                            checkable 
+                            multiple
+                            checkStrictly
+                            title='多选'
+                            value={this.state.value1}
+                            onChange={value => this.setState({value1: value})}
+                            renderValueText={(nodes) => {
+                                let str = "";
+                                for (let i in nodes) {
+                                    let node = nodes[i];
+                                    if (i < nodes.length - 1) {
+                                        str += node.label + "/";
+                                    } else {
+                                        str += node.label;
+                                    }
+                                }
+                                return <Text style={{color: '#0ae'}}>{str}</Text>
+                            }}
+                        />
+                    </View>
+                    <View style={styles.text}>
+                        <Text style={{fontSize: 20, color: '#0ae'}}>多选</Text>
+                    </View>
+                </View>
+                <View style={styles.wapperTree}>
+                    <View style={styles.treeSelect}>
+                        <TreeSelect 
+                            styles={defautStyles} 
+                            treeData={treeData}
+                            showLine
+                            checkable
+                            title='级联多选'
+                            value={this.state.value2}
+                            onChange={value => this.setState({value2: value})}
+                            renderValueText={(nodes) => {
+                                let str = "";
+                                for (let i in nodes) {
+                                    let node = nodes[i];
+                                    if (i < nodes.length - 1) {
+                                        str += node.label + "/";
+                                    } else {
+                                        str += node.label;
+                                    }
+                                }
+                                return <Text style={{color: 'pink'}}>{str}</Text>
+                            }}
+                        />
+                    </View>
+                    <View style={styles.text}>
+                        <Text style={{fontSize: 20, color: '#0ae'}}>级联多选</Text>
+                    </View>
                 </View>
             </View>
         </View>
@@ -50,24 +98,19 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'flex-start',
     },
-    other: {
-        flex: 1,
-        alignItems: 'flex-start',
-        flexDirection: 'row',
-    },
     wapperTree: {
-        flex: 1,
         alignItems: 'flex-start',
         flexDirection: 'row',
-        justifyContent: 'center',
-  
+        height: 50
     },
     treeSelect: {
         flex: 1,
         flexDirection: 'row',
-        margin: 8,
+        padding: 8,
+        height: 40
     },
     text: {
+        width: 100,
         marginRight: 16,
         alignItems: 'center',
         flexDirection: 'row',

@@ -18,17 +18,18 @@ subtitle: 树形控件
 |treeData | 创建树的数据 | TreeNode[] | [] |
 |multiple | 支持点选多个节点（节点本身） | boolean | false |
 |checkable | 节点前添加 Checkbox 复选框 | boolean | false |
+|checkStrictly | 父子节点选中状态不再关联 | boolean | false | 
+|defaultValue | 默认选中值 | string[] | [] |
+|value | (受控)选中值 | string[] | [] |
 |onChange | 点击确定触发 | function(selectedKeys, e:{selected: bool, selectedNodes, node}) | - |
 |showLine | 是否展示连接线 | boolean | false | 
 |expandIconSize | 展开收起图标大小 | number | 11 | 
 |iconSize | 复选框和文本前自定义图标大小 | number | 15 | 
-|treeStyle | 组件最外层由ScrollView包裹，请传入该组件的style | StyleSheet | { padding: 10,height: ScreenHeight - 90} | 
-|iconSize | 复选框和文本前自定义图标大小 | number | 15 | 
 |dismissText | 取消 | string | 取消 | 
 |okText | 确定 | string | 确定 | 
 |title | 确定取消中间的标题 | string | null | 
-|inputIconSize | input右边的图表大小 | number | 25 | 
-|inputStyles | 输入框的Style | StyleSheet | null | 
+|rightIconSize | 向右的图标大小 | number | 25 | 
+|styles | 自定义组件的界面风格 | {key:StyleSheet} | 默认风格 | 
 
 ## 使用
 ```jsx

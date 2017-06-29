@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Tree from './Tree'
 import React, { PropTypes, Component } from 'react';
 import {ScrollView, View, Text, TouchableOpacity, TextInput, TouchableHighlight} from 'react-native';
+import MyUtils from './MyUtils'
 export default class TreeSelect extends Component {
     constructor() {
         super();
@@ -16,7 +17,14 @@ export default class TreeSelect extends Component {
             value: [],
         }
     }
-    
+    componentWillMount() {
+        this.setState({selectedKeys: this.props.value || this.props.defaultValue || []});
+    }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.value) {
+            this.setState({selectedKeys: nextProps.value});
+        } 
+    }
     onDismiss() {
         let nodes = this.state.valueInfo.selectedNodes || [];
         let str = this.nodes2Str(nodes);
@@ -36,18 +44,7 @@ export default class TreeSelect extends Component {
         }
         return str;
     }
-    assign(obj) {
-        let ret = {};
-        for (let key in obj) {
-            let value = obj[key];
-            if (value instanceof Array) {
-                ret[key] = value.map(item => this.assign(item))
-            } else {
-                ret[key] = value;
-            }
-        }
-        return ret;
-    }
+    
     onOk() {
         let nodes = this.state.info.selectedNodes || [];
         let str = this.nodes2Str(nodes);
@@ -55,7 +52,7 @@ export default class TreeSelect extends Component {
             valueText: str, 
             visible: false, 
             value: this.state.selectedKeys.map(item=>item), 
-            valueInfo: this.assign(this.state.info)
+            valueInfo: MyUtils.assign(this.state.info)
         })
         this.props.onChange && this.props.onChange(this.state.selectedKeys, this.state.info);
     }
@@ -84,7 +81,7 @@ export default class TreeSelect extends Component {
                     <View style={iconStyle}>
                         <Icon
                             onPress={()=>{
-                                this.setState({visible: true, selectedKeys: this.state.value.map(item=>item), info: this.assign(this.state.valueInfo)})
+                                this.setState({visible: true, selectedKeys: this.state.value.map(item=>item), info: MyUtils.assign(this.state.valueInfo)})
                             }}
                             name='angle-right'
                             size={this.props.rightIconSize || 30}
@@ -122,6 +119,7 @@ export default class TreeSelect extends Component {
                         checkStrictly={checkStrictly}
                         showLine={showLine}
                         iconSize={iconSize}
+                        expandIconSize={expandIconSize}
                         multiple={multiple}
                         treeStyle={treeStyle}
                         onSelect={this.onChange.bind(this)}
