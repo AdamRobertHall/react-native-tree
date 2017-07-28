@@ -51,7 +51,7 @@ class Tree extends React.Component {
         let selectedNodes = [];
         MyUtils.traverseTree(treeData, (node, parent) => {
             node.parentNode = parent;
-            if (selectedKeys.indexOf(node.key) !== -1) {
+            if (selectedKeys && selectedKeys.indexOf(node.key) !== -1) {
                 selectedNodes.push(node);
                 if (checkable && !checkStrictly) {
                     MyUtils.parentSelect(parent, selected, [], []);
