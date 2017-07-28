@@ -403,8 +403,8 @@ class Tree extends React.Component {
      * @param {TreeNode} parentNode 父节点
      */
     renderTree(data, parentNode) {
-        const nodes = [];
-        for (const i = 0; i < data.length; i++) {
+        let nodes = [];
+        for (let i = 0; i < data.length; i++) {
             nodes.push(this.renderNode(data[i], parentNode))
         }
         return nodes
