@@ -288,7 +288,7 @@ class Tree extends React.Component {
      * @param {TreeNode} node 
      */
     renderItem(node) {
-        const {checkable, checkStrictly} = this.props;
+        const {checkable, checkStrictly,nodeStyle} = this.props;
         let {expanded, selected} = this.state;
         let {expandedKeys, selectedKeys, showLine, iconSize, expandIconSize} = this.props;
         const {key, children, icon, label, disabled} = node;
@@ -331,7 +331,7 @@ class Tree extends React.Component {
 
         let textNode;
         if (typeof label === 'string') {
-            textNode = <Text style={textStyle}>{label} </Text>
+            textNode = <Text style={[textStyle,nodeStyle]}>{label} </Text>
         } else {
             textNode = <View>{label}</View>
         }
