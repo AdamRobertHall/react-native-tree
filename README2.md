@@ -29,7 +29,7 @@ subtitle: 树形控件
 |okText | 确定 | string | 确定 | 
 |title | 确定取消中间的标题 | string | null | 
 |rightIconSize | 向右的图标大小 | number | 25 | 
-|styles | 自定义组件的界面风格 | {key:StyleSheet} | 默认风格 | 
+|styles | 自定义组件的界面样式 | {key:StyleSheet} | defaultStyles | 
 
 ## 使用
 ```jsx

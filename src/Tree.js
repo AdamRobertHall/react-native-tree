@@ -331,11 +331,11 @@ class Tree extends React.Component {
 
         let textNode;
         if (typeof label === 'string') {
-            textNode = <Text style={[textStyle,nodeStyle]}>{label} </Text>
+            textNode = <Text style={[textStyle, nodeStyle]}>{label} </Text>
         } else {
             textNode = <View>{label}</View>
         }
-
+        let styles = this.props.styles || defaultStyles;
         return (
             <View style={styles.item}>
                 {hasChildren && 
@@ -375,6 +375,7 @@ class Tree extends React.Component {
      * @param {TreeNode} parentNode 父节点
      */
     renderNode(node, parentNode) {
+        let styles = this.props.styles || defaultStyles;
         const {expanded} = this.state
         const {renderItem, showLine} = this.props
         const hasChildren = node.children && node.children.length > 0
@@ -411,6 +412,7 @@ class Tree extends React.Component {
     }
 
     render() {
+        let styles = this.props.styles || defaultStyles;
         return <ScrollView style={this.props.treeStyle || styles.tree}>
             {this.renderTree(this.props.treeData || [], null)}
         </ScrollView>
@@ -418,7 +420,7 @@ class Tree extends React.Component {
 }
 const iconWidth = 20;
 const lineMarginLeft = 4;
-const styles = {
+const defaultStyles = {
     tree: {
         padding: 10,
         height: ScreenHeight - 90,

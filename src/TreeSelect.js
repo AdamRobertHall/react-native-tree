@@ -62,12 +62,12 @@ export default class TreeSelect extends Component {
     render() {
         const dismissText = this.props.dismissText || '取消';
         const okText = this.props.okText || '确定'
-        let styles = this.props.styles || defautStyles;
+        let styles = this.props.styles || defaultStyles;
         let containerStyle = styles.container;
         let valueStyle = styles.value;
         let valueWapperStyle = styles.valueWapper;
         let iconStyle = styles.icon;
-        const {checkable, checkStrictly, multiple, treeStyle, showLine, iconSize, expandIconSize} = this.props;
+        const {checkable, checkStrictly, multiple, treeStyle, treeStyles, nodeStyle, showLine, iconSize, expandIconSize} = this.props;
         return (
             <View style={containerStyle}>
                 <View style={valueWapperStyle}>
@@ -126,6 +126,8 @@ export default class TreeSelect extends Component {
                         expandedKeys={this.state.expandedKeys}
                         selectedKeys={this.state.selectedKeys}
                         onExpand={expandedKeys=>this.setState({expandedKeys:expandedKeys})}
+                        nodeStyle={nodeStyle}
+                        styles={treeStyles}
                     />
                 </Modal>
             </View>
@@ -133,7 +135,7 @@ export default class TreeSelect extends Component {
     }
 }
 
-const defautStyles = {
+const defaultStyles = {
     container: {
         flex: 1
     },

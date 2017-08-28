@@ -31,7 +31,8 @@ subtitle: 树形控件
 |expandIconSize | 展开收起图标大小 | number | 11 | 
 |iconSize | 复选框和文本前自定义图标大小 | number | 15 | 
 |treeStyle | 组件最外层由ScrollView包裹，请传入该组件的style | StyleSheet | { padding: 10,height: ScreenHeight - 90} | 
-
+|styles | 自定义组件的界面样式 | {key:StyleSheet} | defaultStyles | 
+|nodeStyle | 自定义树节点文本样式 | StyleSheet | null |
 ### TreeNode props
 
 | 参数       | 说明                                      | 类型       | 默认值 |
