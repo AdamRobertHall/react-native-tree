@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import { Router, Scene, TabBar, Actions } from 'react-native-router-flux'
 import {
   AppRegistry, Text, View, ScrollView, TouchableHighlight, TouchableOpacity
@@ -10,7 +10,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 global.Icon = Icon;
 global.SideMenu = SideMenu;
 global.React = React;
-global.PropTypes = PropTypes;
 global.Component = Component;
 global.Router = Router;
 global.Scene = Scene;

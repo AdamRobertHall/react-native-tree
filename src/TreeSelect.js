@@ -1,8 +1,8 @@
 const Modal = require('rc-dialog/lib/Modal')
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Tree from './Tree'
-import React, { PropTypes, Component } from 'react';
-import {ScrollView, View, Text, TouchableOpacity, TextInput, TouchableHighlight} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, TouchableHighlight} from 'react-native';
 import MyUtils from './MyUtils'
 export default class TreeSelect extends Component {
     constructor() {

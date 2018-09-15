@@ -1,21 +1,12 @@
 {
   "name": "react-native-tree",
-  "version": "1.2.0",
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
-  },
+  "version": "1.3.0",
   "dependencies": {
     "rc-dialog": "^6.5.10",
     "react-native-vector-icons": "^4.2.0"
   },
-  "description": "allow custom all styles",
+  "description": "compatible react and react-native different versions",
   "main": "index.js",
-  "devDependencies": {
-    "@types/react": "~0.14.41",
-    "@types/react-native": "~0.29.36",
-    "react": "^15.5.0",
-    "react-native": "^0.41.2"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AdamRobertHall/react-native-tree.git"
@@ -26,6 +17,7 @@
     "tree-select"
   ],
   "author": "AdamRobertHall",
+  "email:": "adamroberthall@sina.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AdamRobertHall/react-native-tree/issues"

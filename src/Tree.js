@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {ScrollView, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MyUtils from './MyUtils'
@@ -447,7 +446,4 @@ const defaultStyles = {
         borderStyle: 'solid',
     }
 }
-Tree.propTypes = {
-	treeData: PropTypes.array.isRequired,
-};
 export default Tree
