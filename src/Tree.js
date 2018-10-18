@@ -359,7 +359,7 @@ class Tree extends React.Component {
                     name={icon} 
                 />}
                 <TouchableOpacity
-                    onPress={this.onSelect.bind(this, node)}
+                    onPress={disabled ? ()=>{} : this.onSelect.bind(this, node)}
                 >
                     {textNode}
                 </TouchableOpacity>
